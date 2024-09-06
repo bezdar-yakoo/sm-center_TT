@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using sm_center_TT.Extensions;
 using sm_center_TT.Models;
@@ -48,7 +41,7 @@ namespace sm_center_TT.Controllers
 
         // GET: api/Doctors/5/polyclinic
         [HttpGet("{page}/{sort}")]
-        public ActionResult GetDoctorSorted(int page = 0, string? sort = "Polyclinic")
+        public ActionResult GetDoctor(int page = 0, string sort = "Polyclinic")
         {
             var doctors = (from doctor in _context.Doctors
                            where doctor.PolyclinicId == null
@@ -72,7 +65,6 @@ namespace sm_center_TT.Controllers
         }
         
         // PUT: api/Doctors/5
-
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDoctor(int id, Doctor doctor)
         {
@@ -103,7 +95,6 @@ namespace sm_center_TT.Controllers
         }
 
         // POST: api/Doctors
-
         [HttpPost]
         public async Task<ActionResult<Doctor>> PostDoctor(Doctor doctor)
         {

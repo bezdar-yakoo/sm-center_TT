@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using sm_center_TT.Extensions;
 using sm_center_TT.Models;
@@ -44,9 +39,9 @@ namespace sm_center_TT.Controllers
         }
 
 
-        // GET: api/Patients/5/polyclinic
+        // GET: api/Patients/5/FirstName
         [HttpGet("{page}/{sort}")]
-        public ActionResult GetDoctorSorted(int page = 0, string? sort = "FirstName")
+        public ActionResult GetPatients(int page = 0, string sort = "FirstName")
         {
 
             var patients = from patient in _context.Patients

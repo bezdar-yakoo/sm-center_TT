@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using System.Reflection;
 
 namespace sm_center_TT.Extensions
 {
@@ -16,10 +17,19 @@ namespace sm_center_TT.Extensions
             }
 
             Expression resultExpression = null;
-
-            var property = typeof(T).GetProperty(sortColumn);
-            if (property == null)
+            PropertyInfo property = null;
+            try
+            {
+                property = typeof(T).GetProperty(sortColumn);
+            }
+            catch (ArgumentNullException ex)
+            {
                 return query;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
             var propertyAccess = Expression.MakeMemberAccess(parameter, property);
 
